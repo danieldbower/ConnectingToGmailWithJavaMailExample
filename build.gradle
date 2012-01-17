@@ -1,0 +1,29 @@
+apply plugin: 'eclipse'
+apply plugin: 'groovy'
+
+version = '0.0.1'
+group = 'emailtest'
+
+sourceCompatibility = '1.6'
+targetCompatibility = '1.6'
+                                            
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+
+    groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.8.4'
+    testCompile group: 'junit', name: 'junit', version: '4.7'
+    
+    //logging
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.6.4'
+	compile group: 'ch.qos.logback', name:'logback-core', version:'1.0.0'
+	compile group: 'ch.qos.logback', name:'logback-classic', version:'1.0.0'
+    
+	//mail
+    compile group: 'javax.mail',       name:'mail',         version:'1.4.4'
+    compile group: 'javax.activation', name:'activation',   version:'1.1.1'
+}
+

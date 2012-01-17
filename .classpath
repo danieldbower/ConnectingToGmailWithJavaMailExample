@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/test/groovy"/>
+	<classpathentry kind="src" path="src/main/groovy"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="GROOVY_DSL_SUPPORT"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/caches/artifacts-4/org.slf4j/slf4j-api/c12498cf18507aa6433a94eb7d3e77d5/jars/slf4j-api-1.6.4.jar" sourcepath="/home/daniel/.gradle/caches/artifacts-4/org.slf4j/slf4j-api/c12498cf18507aa6433a94eb7d3e77d5/sources/slf4j-api-1.6.4-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/caches/artifacts-4/ch.qos.logback/logback-core/c12498cf18507aa6433a94eb7d3e77d5/jars/logback-core-1.0.0.jar" sourcepath="/home/daniel/.gradle/caches/artifacts-4/ch.qos.logback/logback-core/c12498cf18507aa6433a94eb7d3e77d5/sources/logback-core-1.0.0-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/caches/artifacts-4/ch.qos.logback/logback-classic/c12498cf18507aa6433a94eb7d3e77d5/jars/logback-classic-1.0.0.jar" sourcepath="/home/daniel/.gradle/caches/artifacts-4/ch.qos.logback/logback-classic/c12498cf18507aa6433a94eb7d3e77d5/sources/logback-classic-1.0.0-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/caches/artifacts-4/javax.mail/mail/c12498cf18507aa6433a94eb7d3e77d5/jars/mail-1.4.4.jar" sourcepath="/home/daniel/.gradle/caches/artifacts-4/javax.mail/mail/c12498cf18507aa6433a94eb7d3e77d5/sources/mail-1.4.4-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/caches/artifacts-4/javax.activation/activation/c12498cf18507aa6433a94eb7d3e77d5/jars/activation-1.1.1.jar" sourcepath="/home/daniel/.gradle/caches/artifacts-4/javax.activation/activation/c12498cf18507aa6433a94eb7d3e77d5/sources/activation-1.1.1-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/caches/artifacts-4/org.codehaus.groovy/groovy/c12498cf18507aa6433a94eb7d3e77d5/jars/groovy-1.8.4.jar" sourcepath="/home/daniel/.gradle/caches/artifacts-4/org.codehaus.groovy/groovy/c12498cf18507aa6433a94eb7d3e77d5/sources/groovy-1.8.4-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/caches/artifacts-4/junit/junit/c12498cf18507aa6433a94eb7d3e77d5/jars/junit-4.7.jar" sourcepath="/home/daniel/.gradle/caches/artifacts-4/junit/junit/c12498cf18507aa6433a94eb7d3e77d5/sources/junit-4.7-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/caches/artifacts-4/antlr/antlr/c12498cf18507aa6433a94eb7d3e77d5/jars/antlr-2.7.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/caches/artifacts-4/asm/asm/c12498cf18507aa6433a94eb7d3e77d5/jars/asm-3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/caches/artifacts-4/asm/asm-tree/c12498cf18507aa6433a94eb7d3e77d5/jars/asm-tree-3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/caches/artifacts-4/asm/asm-commons/c12498cf18507aa6433a94eb7d3e77d5/jars/asm-commons-3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/caches/artifacts-4/asm/asm-util/c12498cf18507aa6433a94eb7d3e77d5/jars/asm-util-3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/daniel/.gradle/caches/artifacts-4/asm/asm-analysis/c12498cf18507aa6433a94eb7d3e77d5/jars/asm-analysis-3.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
