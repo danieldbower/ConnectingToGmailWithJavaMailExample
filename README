@@ -1,0 +1,15 @@
+This is a simple example of connecting to Gmail using the JavaMail Api
+
+JavaMail api:  http://javamail.kenai.com/nonav/javadocs/index.html
+               http://www.oracle.com/technetwork/java/faq-135477.html#gmail
+
+
+This project is built using Gradle, and written in Groovy.
+
+You will need to drop a config file at /tmp/emailtest.properties.  Look for the format in the exampleConfig directory.
+
+There is a "Test" that demonstrates working the class.  You should be able to run it within eclipse or gradle.
+
+
+http://bowerstudios.com/node/898
+
