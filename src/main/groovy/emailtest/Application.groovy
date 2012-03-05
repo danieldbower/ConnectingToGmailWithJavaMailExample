@@ -13,6 +13,37 @@ import org.slf4j.LoggerFactory
 
 class Application {
 
+	public static void main(String[] args){
+		if(args.size()<2){
+			logger.error "You'll need to provice arguments: \nConfig File Path, action (s send via smtp, f fetch via imap)"
+		}
+		
+		Application app = new Application(args[0])
+		
+		if(args[1]=="s"){
+			if(args.size()<4){
+				logger.error "You'll need to provide arguments for the subject and the message, optionally, you can provide the sender and receiver"
+			}else{
+				if(args.size()==6){
+					app.send(args[2], args[3], args[4], args[5])
+				}else{
+					app.send(args[2], args[3])
+				}
+			}
+		}else if(args[1]=="f"){
+			if(args.size()<3){
+				logger.info "You can provide an argument to fetch the contents of an imap folder"
+				app.listFolders()
+			}else{
+				Folder folder = app.folderBy(args[2], true)
+				app.countMessages(folder)
+				app.listMessages(folder)
+			}
+		}
+		
+		app.close();
+	}
+
 	public Application(String configFileLocation){
 		loadConfig(configFileLocation);
 	}
@@ -21,21 +52,27 @@ class Application {
 	 * Send a message from the smtp user to the imap user
 	 */
 	public void send(String subj, String mesg){
+		send(subj, mesg, smtpUsername, imapUsername)
+	}
+	
+	public void send(String subj, String mesg, String sender, String receiver){
 		gmailSmtpConnect()
-
+		
 		Message message = new MimeMessage(smtpSession);
-		message.setFrom(new InternetAddress(smtpUsername))
-		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(imapUsername))
+		message.setFrom(new InternetAddress(sender))
+		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver))
 		message.setSubject(subj)
 		message.setText(mesg)
 
 		transport.sendMessage(message, message.getAllRecipients())
+
+		logger.info "Message sent."
 	}
 
 	/**
 	 * Get a folder from the store in order to work with it in the rest of the api
 	 */
-	public Folder folderBy(String folderName, boolean readOnly){
+	protected Folder folderBy(String folderName, boolean readOnly){
 		gmailImapConnect()
 		
 		Folder folder = store.getFolder(folderName)
@@ -79,8 +116,13 @@ class Application {
 
 	private Properties props
 
+	private String imapHost
+	private int imapPort
 	private String imapUsername
 	private String imapPassword
+	
+	private String smtpHost
+	private String smtpPort
 	private String smtpUsername
 	private String smtpPassword
 
@@ -102,7 +144,7 @@ class Application {
 
 			smtpSession = Session.getInstance(props, null)
 			transport = smtpSession.getTransport("smtps")
-			transport.connect("smtp.gmail.com", 465, smtpUsername, smtpPassword)
+			transport.connect(smtpHost, smtpPort, smtpUsername, smtpPassword)
 		}
 
 		return transport
@@ -115,8 +157,8 @@ class Application {
 		if(!store){
 			Properties props = new Properties()
 			props.setProperty("mail.store.protocol", "imaps")
-			props.setProperty("mail.imaps.host", "imap.gmail.com")
-			props.setProperty("mail.imaps.port", "993")
+			props.setProperty("mail.imaps.host", imapHost)
+			props.setProperty("mail.imaps.port", imapPort)
 
 			imapSession = Session.getInstance(props,null)
 			store = imapSession.getStore("imaps")
@@ -147,10 +189,14 @@ class Application {
 			props.load(file.newInputStream())
 			logger.info("Read Configuration file from {}", configFileLocation)
 
-			imapUsername =  props["imap.username"]
-			imapPassword =  props["imap.password"]
-			smtpUsername =  props["smtp.username"]
-			smtpPassword =  props["smtp.password"]
+			imapHost 	 =  props["imap_host"]
+			imapPort 	 =  props["imap_port"]
+			imapUsername =  props["imap_username"]
+			imapPassword =  props["imap_password"]
+			smtpHost	 =  props["smtp_host"]
+			smtpPort	 =  props["smtp_port"]
+			smtpUsername =  props["smtp_username"]
+			smtpPassword =  props["smtp_password"]
 		}
 	}
 }
