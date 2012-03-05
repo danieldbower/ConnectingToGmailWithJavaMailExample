@@ -25,8 +25,10 @@ class Application {
 				logger.error "You'll need to provide arguments for the subject and the message, optionally, you can provide the sender and receiver"
 			}else{
 				if(args.size()==6){
+					logger.debug "Sending from ${args[4]} to ${args[5]} with subject: \n${args[2]} \nAnd body: \n${args[3]}"
 					app.send(args[2], args[3], args[4], args[5])
 				}else{
+					logger.debug "Sending from smtp user to imap user with subject: \n${args[2]} and body: \n${args[3]}"
 					app.send(args[2], args[3])
 				}
 			}
