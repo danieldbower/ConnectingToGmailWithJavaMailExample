@@ -130,6 +130,7 @@ class Application {
 	
 	private String smtpHost
 	private int smtpPort
+	private boolean smtpSsl = true
 	private String smtpUsername
 	private String smtpPassword
 
@@ -147,10 +148,12 @@ class Application {
 	protected Transport gmailSmtpConnect(){
 		if(!transport){
 			Properties props = new Properties()
-			props.setProperty("mail.smtps.auth", "true")
+			if(smtpSsl){
+				props.setProperty("mail.smtps.auth", "true")
+			}
 
 			smtpSession = Session.getInstance(props, null)
-			transport = smtpSession.getTransport("smtps")
+			transport = smtpSession.getTransport(smtpSsl?"smtps":"smtp")
 			transport.connect(smtpHost, smtpPort, smtpUsername, smtpPassword)
 		}
 
@@ -200,8 +203,12 @@ class Application {
 			imapPort 	 =  props["imap_port"]
 			imapUsername =  props["imap_username"]
 			imapPassword =  props["imap_password"]
+			
 			smtpHost	 =  props["smtp_host"]
 			smtpPort	 =  Integer.valueOf(props["smtp_port"])
+			if(props["smtp_ssl_on"]!=null){
+				smtpSsl		 =  Boolean.valueOf(props["smtp_ssl_on"])
+			}
 			smtpUsername =  props["smtp_username"]
 			smtpPassword =  props["smtp_password"]
 		}
