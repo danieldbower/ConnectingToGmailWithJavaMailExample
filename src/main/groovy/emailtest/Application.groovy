@@ -15,7 +15,7 @@ class Application {
 
 	public static void main(String[] args){
 		if(args.size()<2){
-			logger.error "You'll need to provice arguments: \nConfig File Path, action (s send via smtp, f fetch via imap)"
+			logger.error "You'll need to provide arguments: \nConfig File Path, action (s send via smtp, f fetch via imap)"
 		}
 		
 		Application app = new Application(args[0])
@@ -98,31 +98,36 @@ class Application {
 	public void listFolders(){
 		gmailImapConnect()
 		
-		logger.info "\n\nFolders:"
+		StringBuilder sb = new StringBuilder()
+		sb.append "\n\nFolders:"
 		store.defaultFolder.list().each { folder ->
-			logger.info folder.name
+			sb.append "\n" + folder.name
 		}
+		logger.info sb.toString()
 	}
 
 	/**
 	 * List the Messages in the given folder
 	 */
 	public void listMessages(Folder folder){
-		logger.info "\n\nMessages in Folder:"
+		StringBuilder sb = new StringBuilder()
+		sb.append "\n\nMessages in Folder:"
+		
 		folder.messages.each { msg ->
-			logger.info msg.subject
+			sb.append "\n" + msg.subject
 		}
+		logger.info sb.toString()
 	}
 
 	private Properties props
 
 	private String imapHost
-	private int imapPort
+	private String imapPort
 	private String imapUsername
 	private String imapPassword
 	
 	private String smtpHost
-	private String smtpPort
+	private int smtpPort
 	private String smtpUsername
 	private String smtpPassword
 
@@ -194,7 +199,7 @@ class Application {
 			imapUsername =  props["imap_username"]
 			imapPassword =  props["imap_password"]
 			smtpHost	 =  props["smtp_host"]
-			smtpPort	 =  props["smtp_port"]
+			smtpPort	 =  Integer.valueOf(props["smtp_port"])
 			smtpUsername =  props["smtp_username"]
 			smtpPassword =  props["smtp_password"]
 		}
