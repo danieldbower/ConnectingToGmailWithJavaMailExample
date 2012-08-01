@@ -16,6 +16,7 @@ class Application {
 	public static void main(String[] args){
 		if(args.size()<2){
 			logger.error "You'll need to provide arguments: \nConfig File Path, action (s send via smtp, f fetch via imap)"
+			return
 		}
 		
 		Application app = new Application(args[0])
@@ -23,6 +24,7 @@ class Application {
 		if(args[1]=="s"){
 			if(args.size()<4){
 				logger.error "You'll need to provide arguments for the subject and the message, optionally, you can provide the sender and receiver"
+				return
 			}else{
 				if(args.size()==6){
 					logger.debug "Sending from ${args[4]} to ${args[5]} with subject: \n${args[2]} \nAnd body: \n${args[3]}"
